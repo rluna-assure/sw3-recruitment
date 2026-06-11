@@ -1,0 +1,251 @@
+openapi: 3.0.3
+info:
+  title: Recruitment WebApp API
+  version: 1.0.0
+  description: RESTful API for managing candidate recruitment, CV upload, and application status workflows.
+servers:
+  - url: http://localhost:3000/api/v1
+    description: Local development server
+paths:
+  /candidates:
+    post:
+      summary: Register a new candidate
+      description: Accept candidate profile fields and a mandatory PDF CV upload.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - name
+                - email
+                - phone
+                - age
+                - country
+                - city
+                - english_level
+                - cv
+              properties:
+                name:
+                  type: string
+                  example: John Doe
+                email:
+                  type: string
+                  format: email
+                  example: john@example.com
+                phone:
+                  type: string
+                  example: "+1 555 123 4567"
+                age:
+                  type: integer
+                  minimum: 18
+                  example: 25
+                country:
+                  type: string
+                  example: USA
+                city:
+                  type: string
+                  example: New York
+                english_level:
+                  type: string
+                  enum: [A1, A2, B1, B2, C1, C2]
+                  example: B2
+                cv:
+                  type: string
+                  format: binary
+      responses:
+        '201':
+          description: Candidate successfully registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Candidate'
+        '400':
+          description: Validation error or invalid file upload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict (e.g., duplicate email)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Payload Too Large (e.g., CV exceeds max size)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '415':
+          description: Unsupported Media Type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: List all candidates
+      description: Retrieve candidate records with optional filtering by country, English level, or status.
+      parameters:
+        - in: query
+          name: country
+          schema:
+            type: string
+          description: Filter candidates by country
+        - in: query
+          name: english_level
+          schema:
+            type: string
+            enum: [A1, A2, B1, B2, C1, C2]
+          description: Filter candidates by English proficiency level
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [Accepted, Rejected, In Review]
+          description: Filter candidates by application status
+      responses:
+        '200':
+          description: List of candidates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Candidate'
+        '400':
+          description: Invalid query parameter
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '413':
+          description: Payload Too Large (if request body exceeds limits)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /candidates/{id}:
+    patch:
+      summary: Update candidate status
+      description: Change the current status of a candidate application.
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Candidate UUID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CandidateStatusUpdate'
+      responses:
+        '200':
+          description: Status updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Candidate'
+        '400':
+          description: Validation error or missing status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Candidate not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict (e.g., update would violate constraints)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Candidate:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: 550e8400-e29b-41d4-a716-446655440000
+        name:
+          type: string
+          example: John Doe
+        email:
+          type: string
+          format: email
+          example: john@example.com
+        phone:
+          type: string
+          example: "+1 555 123 4567"
+        age:
+          type: integer
+          example: 25
+        country:
+          type: string
+          example: USA
+        city:
+          type: string
+          example: New York
+        english_level:
+          type: string
+          enum: [A1, A2, B1, B2, C1, C2]
+          example: B2
+        status:
+          type: string
+          enum: [Accepted, Rejected, In Review]
+          example: In Review
+        cv_url:
+          type: string
+          format: uri
+          example: http://localhost:3000/api/v1/candidates/550e8400-e29b-41d4-a716-446655440000/cv
+        createdAt:
+          type: string
+          format: date-time
+          example: '2026-06-10T12:34:56Z'
+    CandidateStatusUpdate:
+      type: object
+      required:
+        - status
+      properties:
+        status:
+          type: string
+          enum: [Accepted, Rejected, In Review]
+          example: Accepted
+    ValidationErrorDetail:
+      type: object
+      properties:
+        field:
+          type: string
+          example: age
+        message:
+          type: string
+          example: Age must be 18 or older.
+
+    ErrorResponse:
+      type: object
+      properties:
+        statusCode:
+          type: integer
+          example: 400
+        error:
+          type: string
+          example: Bad Request
+        message:
+          type: string
+          example: Invalid field: age must be at least 18.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationErrorDetail'
