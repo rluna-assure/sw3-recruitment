@@ -6,7 +6,7 @@ See `docs/vision.md` for the Project Vision, goals, file upload policy, and summ
 
 ### Candidate
 
-check the domain in diagrams/domain.md
+check the domain in diagrams/data-model.md
 
 ## 3. Business Rules
 

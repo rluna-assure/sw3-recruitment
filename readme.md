@@ -22,34 +22,7 @@ Frontend: [React.JS/shadcn/ui]
 Backend: [Nest.js]
 Database: [Postgres]
 
-Local Setup
+**Local Setup**
 
-Clone the repository:
-``` Bash
-	git clone [repository-url]
-	cd recruitment-webapp
-```
-
-Install dependencies:
-``` Bash
-	npm i
-```
-
-Add your installation command here
-Configure environment variables:
-Create a .env file based on .env.example.
-Run the application:
-
-``` Bash
-npm run start
-```
-
-Development Workflow
-
-This project follows SDD (Specification-Driven Development), BDD (Behavior-Driven Development), and TDD (Test-Driven Development).
-
-- See /docs for architectural specifications.
-- See /features for requirement definitions.
-- See /tests for unit and integration tests.
-- All development activity is logged in /prompts/prompt_log.md.
-
+follow:
+docs/project-setup.md

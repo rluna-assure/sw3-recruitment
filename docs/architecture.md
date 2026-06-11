@@ -9,14 +9,18 @@ Recruitment WebApp is a recruitment platform with a React frontend and NestJS ba
 - **Separation of concerns:** each layer has a single responsibility.
 - **Testability:** business rules are testable without external dependencies.
 - **Scalability:** the design allows replacing persistence implementations without changing business rules.
+- **frontend folder** create if not exists a frontend folder
+- **backend folder** create if not exists a backend folder
+- **tests folder** create if not exists a test folder and put all unit tests inside folder
+
 ## Backend Layers
-### 1. Presentation Layer (`src/infrastructure/controllers/`)
+### 1. Presentation Layer (`backend/src/infrastructure/controllers/`)
 
 - **Responsibility:** Handles the HTTP protocol, routing, and user input validation.
 - **Components:** - NestJS Controllers (e.g., `CandidateController`).
     - Input Data Transfer Objects (DTOs) with `class-validator`.
 - **Rule:** It only sanitizes data, delegates execution to the Core Layer, and maps responses to HTTP status codes.
-### 2. Core / Domain Layer (`src/core/`)
+### 2. Core / Domain Layer (`backend/src/core/`)
 
 - **Responsibility:** The heart of the application. Contains all business logic and rules.
 	**Components:**
@@ -24,7 +28,7 @@ Recruitment WebApp is a recruitment platform with a React frontend and NestJS ba
     - **Business Services:** Orchestrators of logic (e.g., `CandidateService`). They contain methods like `register()`, `list()`, and `updateStatus()`.
     - **Repository Contracts:** Abstract classes or interfaces that define _what_ data operations are needed (e.g., `CandidateRepository`).
 - **Rule:** **Strictly independent of the database ORM.** It interacts only with its own repository contracts.
-### 3. Infrastructure Layer (`src/infrastructure/`)
+### 3. Infrastructure Layer (`backend/src/infrastructure/`)
 
 - **Responsibility:** Implements technical details and external tools.
 - **Components:**    
