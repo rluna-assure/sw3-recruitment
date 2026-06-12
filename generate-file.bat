@@ -12,11 +12,6 @@ mkdir docs
 mkdir docs\diagrams
 mkdir features
 mkdir src
-mkdir tests
-mkdir tests\unit
-mkdir tests\integration
-mkdir tests\e2e
-mkdir scripts
 
 :: Create root files
 type nul > readme.md
@@ -29,20 +24,16 @@ type nul > docs\api_spec.yaml
 type nul > docs\done.md
 
 :: Create Mermaid diagram placeholders
-type nul > docs\diagrams\domain.md
+type nul > docs\diagrams\data-model.md
 type nul > docs\diagrams\components.md
 type nul > docs\diagrams\sequence-auth.md
-type nul > docs\diagrams\deployment.md
+type nul > docs\diagrams\sequence-admin-noauth.md
 
 :: Create sample feature placeholders
 type nul > docs\features\_feature-template.md
 
 :: Optional .gitkeep files (for empty folders)
 type nul > src\.gitkeep
-type nul > tests\unit\.gitkeep
-type nul > tests\integration\.gitkeep
-type nul > tests\e2e\.gitkeep
-type nul > scripts\.gitkeep
 
 echo.
 echo ==========================================
@@ -54,7 +45,5 @@ echo   readme.md
 echo   agents.md
 echo   docs\
 echo   src\
-echo   tests\
-echo   scripts\
 echo.
 pause

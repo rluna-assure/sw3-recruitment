@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document defines the Specification-Driven Development (SDD) approach for the Recruitment WebApp project, including alignment with BDD and TDD. The goal is to provide a clear specification for implementing the backend, frontend, and tests without ambiguity.
+This document defines the Specification-Driven Development (SDD) approach for the Recruitment WebApp project, including alignment with BDD and SDD. The goal is to provide a clear specification for implementing the backend, frontend, and tests without ambiguity.
 
 ## Scope
 
@@ -18,7 +18,7 @@ The project includes:
 1. Document functional and non-functional requirements.
 2. Define the API and data contracts.
 3. Create BDD scenarios for critical workflows.
-4. Establish a TDD test strategy with unit, integration, and end-to-end test cases.
+4. Establish a all unit tests and integration tests.
 5. Maintain a clean architecture with separated layers.
 
 ## Roles
@@ -31,7 +31,7 @@ The project includes:
 
 - M1: Complete domain documentation (`docs/context.md`), API spec (`docs/api_spec.yaml`), and architecture (`docs/architecture.md`).
 - M2: Complete BDD feature documentation in `docs/features/`.
-- M3: Document the TDD test plan in `docs/planning.md` and acceptance criteria in `docs/done.md`.
+- M3: Document tests plan in `docs/planning.md` and acceptance criteria in `docs/done.md`.
 - M4: Execute and verify tests during implementation.
 
 ## BDD Feature Map
@@ -42,7 +42,7 @@ The project includes:
 | Admin Panel | `docs/features/admin_panel.md` | Filter, view, and update application statuses |
 | Traffic Light Logic | `docs/context.md` + `docs/features/admin_panel.md` | Classify English levels visually |
 
-## Test Strategy (TDD)
+## Test Strategy
 
 ### Unit Tests
 - Validate domain business logic
@@ -75,4 +75,4 @@ Each BDD story must map to:
 
 - Tests must be written before implementation for each feature.
 - If documentation changes, update the corresponding file immediately.
-- Code changes should reference the associated BDD scenario and TDD test case.
+- Code changes should reference the associated BDD scenario and test cases.

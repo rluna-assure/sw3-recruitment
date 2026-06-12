@@ -18,11 +18,11 @@ Traffic-Light Status System: Visual indicators for English proficiency levels:
 
 Application Management: Capability to mark candidates as "Accepted", "Rejected", or "In Review".
 Technical Stack
-Frontend: [React.JS/shadcn/ui]
-Backend: [Nest.js]
-Database: [Postgres]
+Frontend: React.JS/shadcn.ui
+Backend: NestJS
+Database: Postgress
 
 **Local Setup**
 
 follow:
-docs/project-setup.md
+[[project-setup]]

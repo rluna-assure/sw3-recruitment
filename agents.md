@@ -2,7 +2,7 @@
 
 ## 1. Core Principles
 - **Language:** All documentation, specs, and features must be in English.
-- **Workflow:** Strictly follow SDD, BDD, and TDD patterns.
+- **Workflow:** Strictly follow SDD, and BDD patterns.
 - **Source of Truth:** - `api_spec.yaml` governs data structures and endpoints.
     - `features/*.md` governs functional requirements and acceptance criteria.
 - **Code Integrity:** Never implement features or changes without first updating the corresponding test file in `/tests`.
@@ -11,7 +11,6 @@
 Every task must follow this sequence:
 1. **Analyze:** Read `docs/context.md` and `api_spec.md`.
 2. **Define (BDD):** Create or update a `.md` file in `/features` with the acceptance criteria.
-3. **Test (TDD):** Define the test case in `/tests`. The test must fail before any source code is written.
 4. **Implement:** Write the minimal code in `/src` to satisfy the test.
 5. **Verify:** Confirm the code passes the test and adheres to the `done.md` definition of done.
 
@@ -24,4 +23,3 @@ Every task must follow this sequence:
 ## 4. Interaction Guidelines
 - If a requirement is ambiguous, ask for clarification before creating files.
 - Before refactoring, verify that existing tests pass.
-- Maintain the `/scripts` directory to house any necessary automation helpers.

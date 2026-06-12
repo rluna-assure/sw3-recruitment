@@ -6,7 +6,7 @@ For Recruitment WebApp to be considered complete, it must meet the following cri
 - `docs/context.md` includes the domain model and business rules.
 - `docs/api_spec.yaml` covers all endpoints, parameters, and schemas.
 - `docs/architecture.md` describes backend, frontend, and layer separation.
-- `docs/planning.md` documents the SDD, BDD, and TDD approach.
+- `docs/planning.md` documents the SDD and BDD approach.
 - `docs/features/*.md` contains clear, verifiable BDD scenarios.
 - `docs/done.md` defines measurable acceptance criteria.
  - `docs/validation.md` documents concrete validation rules, field limits, and error payload formats.
@@ -31,8 +31,8 @@ For Recruitment WebApp to be considered complete, it must meet the following cri
 - The application returns clear error responses for invalid input.
 
 ## Checklist
-- [ ] Documentation is complete and consistent
+- [ ] Review the documentation to understand the idea.
 - [ ] BDD scenarios are defined for each main flow
-- [ ] TDD test plan is established
-- [ ] Requirements are unambiguous
-- [ ] Tests are designed before implementation
+- [ ] Create projects backend and frontend
+- [ ] Implement /docs/features
+- [ ] Tests are designed after implementation

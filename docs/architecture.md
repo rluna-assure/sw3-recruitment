@@ -9,9 +9,7 @@ Recruitment WebApp is a recruitment platform with a React frontend and NestJS ba
 - **Separation of concerns:** each layer has a single responsibility.
 - **Testability:** business rules are testable without external dependencies.
 - **Scalability:** the design allows replacing persistence implementations without changing business rules.
-- **frontend folder** create if not exists a frontend folder
-- **backend folder** create if not exists a backend folder
-- **tests folder** create if not exists a test folder and put all unit tests inside folder
+- Scenary test must included in each project as backend and frontend.
 
 ## Backend Layers
 ### 1. Presentation Layer (`backend/src/infrastructure/controllers/`)
@@ -42,7 +40,6 @@ Recruitment WebApp is a recruitment platform with a React frontend and NestJS ba
     
 2. **Dependency Flow (Inverted at the bottom):** The `Presentation Layer` depends on the `Core Layer`. Crucially, the `Infrastructure Layer` **also depends on the Core Layer** because it must implement the contracts defined there.
 ## Frontend Layers
-
 - **Features:** each functionality is self-contained.
   - `RegistrationForm`
   - `AdminPanel`
@@ -69,15 +66,14 @@ Recruitment WebApp is a recruitment platform with a React frontend and NestJS ba
 
 For the initial MVP and documentation-driven implementation, the admin and candidate pages are exposed by route only (no authentication). This accelerates development and testing of the recruitment flows, but is not secure for production use.
 
-Before moving to production, implement an authentication and authorization layer (e.g., JWT for admin sessions) and secure admin routes appropriately.
-
 ## Non-functional Rules
+
 - Consistent data formats
 - Centralized error handling
 - Documentation updated before implementation
-- Automated tests for each layer
+- Avoid DRY.
+- Use good practices.
 
-## SDD, BDD, and TDD Alignment
+## SDD, BDD Alignment
 - SDD: implementation starts from documented requirements.
 - BDD: scenarios in `docs/features/` define expected behavior.
-- TDD: tests are written before code, and implementation makes them pass.

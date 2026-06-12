@@ -454,7 +454,7 @@ Error: listen EADDRINUSE :::3000
    git checkout -b feature/SW3-XXX-description
    ```
 
-2. **Write tests first (TDD):**
+2. **Write tests first**
    ```bash
    npm run test:watch
    ```
