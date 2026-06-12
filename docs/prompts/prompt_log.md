@@ -3,29 +3,31 @@
 # Prompts used to guide step by step
 
 1. **Step 1: Create project**
-    - Generate `src/backend/` and `src/frontend/` folders if not exists).
+    - Generate `src/backend/` and `src/frontend/` folders if not exists.
     - Add .gitignore file for backend and frontend projects
     - Add basic config files (`package.json`, `tsconfig.json`, etc.).
     - Add `src/backend/cv_files/` for local CV storage.
     
-2. **Step 2: Implement backend**    
-    - Build backend structure and endpoints per architecture.md.
-    - Implement `POST /api/v1/candidates` with CV upload to `cv_files`.
-    - Implement `GET /api/v1/candidates`, `PATCH /api/v1/candidates/{id}`, and `GET /api/v1/candidates/{id}/cv`.
+2. **Step 2: Implement backend**
+    - Build backend structure and endpoints per architecture.md.
+    - Implement `POST /api/v1/candidates` with CV upload to `cv_files`.
+    - Implement `GET /api/v1/candidates`, `PATCH /api/v1/candidates/{id}`, and `GET /api/v1/candidates/{id}/cv`.
     - Build React pages and components per architecture.md.
     - Implement registration form and admin panel.
     - Integrate with backend API.
     
-3. **Step 3: Add tests**
-        - Create unit tests in [unit].
-    - Add integration tests in [integration].
-    - Add E2E tests in [e2e].
-4. **Step 4: Follow feature docs**
-    
+
+3. **Step 3: Follow feature docs**
     - Implement features from:
         - [[canditate-registration.md]]
         - [[admin_panel.md]]
         - [[cv-download]]
+
+4. **Step 4: Add tests**
+    - Create all unit tests in tests/unit/
+    - Add integration tests in tests/integration/
+    -  Add E2E tests in tests/e2e/
+
 5. **Step 5: Validate against docs**
     
     - Confirm API responses match [[error-contract.md]].
